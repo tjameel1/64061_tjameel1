@@ -1,0 +1,169 @@
+
+---
+title: "Assignment 1: Neural Networks"
+author: "Tara Jameel"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(keras)
+library(tensorflow)
+set.seed(123)
+library(keras)
+install_keras()
+
+```
+
+# Purpose
+
+This report improves the baseline IMDB neural network by testing different model configurations.
+I tested different numbers of layers (from one to three), adjusted the number of units in each layer (32 or 64), compared binary crossentropy and MSE losses, tried both ReLU and tanh activations, and explored whether adding dropout helped reduce overfitting.
+
+The purpose is to evaluate model performance on the validation set and select the configuration that achieves the strongest generalization.
+
+# Load and Prepare Data
+
+```{r data}
+num_words <- 10000
+
+imdb <- dataset_imdb(num_words = num_words)
+c(train_data, train_labels) %<-% imdb$train
+c(test_data, test_labels) %<-% imdb$test
+
+vectorize_sequences <- function(sequences, dimension = 10000) {
+  results <- matrix(0, nrow = length(sequences), ncol = dimension)
+  for (i in seq_along(sequences)) {
+    idx <- sequences[[i]]
+    results[i, idx] <- 1
+  }
+  results
+}
+
+x_train <- vectorize_sequences(train_data, num_words)
+x_test  <- vectorize_sequences(test_data,  num_words)
+
+y_train <- as.numeric(train_labels)
+y_test  <- as.numeric(test_labels)
+
+val_size <- 10000
+x_val <- x_train[1:val_size, ]
+partial_x_train <- x_train[(val_size + 1):nrow(x_train), ]
+
+y_val <- y_train[1:val_size]
+partial_y_train <- y_train[(val_size + 1):length(y_train)]
+```
+
+# Model Builder Functon
+
+```{r model-builder}
+build_model <- function(hidden_layers = 2,
+                        units = 32,
+                        activation = "relu",
+                        loss = "binary_crossentropy",
+                        dropout_rate = 0.0) {
+
+  model <- keras_model_sequential()
+
+  for (i in 1:hidden_layers) {
+    model %>% layer_dense(
+      units = units,
+      activation = activation,
+      input_shape = if (i == 1) c(num_words) else NULL
+    )
+    if (dropout_rate > 0) model %>% layer_dropout(rate = dropout_rate)
+  }
+
+  model %>% layer_dense(units = 1, activation = "sigmoid")
+
+  model %>% compile(
+    optimizer = "adam",
+    loss = loss,
+    metrics = c("accuracy")
+  )
+
+  model
+}
+```
+
+# Experiments
+
+```{r experiments}
+experiments <- tribble(
+  ~model_name,                 ~layers, ~units, ~activation, ~loss,                ~dropout,
+  "Baseline (2x32, relu, BCE)",      2,     32,   "relu",     "binary_crossentropy",   0.0,
+  "1 layer (32, relu, BCE)",         1,     32,   "relu",     "binary_crossentropy",   0.0,
+  "3 layers (32, relu, BCE)",        3,     32,   "relu",     "binary_crossentropy",   0.0,
+  "2 layers (64, relu, BCE)",        2,     64,   "relu",     "binary_crossentropy",   0.0,
+  "2 layers (32, tanh, BCE)",        2,     32,   "tanh",     "binary_crossentropy",   0.0,
+  "2 layers (32, relu, MSE)",        2,     32,   "relu",     "mse",                   0.0,
+  "Dropout (2x64, relu, BCE, .5)",   2,     64,   "relu",     "binary_crossentropy",   0.5
+)
+experiments
+```
+
+# Train and Evaluate
+
+```{r train-loop}
+epochs <- 20
+batch_size <- 512
+
+run_experiment <- function(row) {
+
+  model <- build_model(
+    hidden_layers = row$layers,
+    units = row$units,
+    activation = row$activation,
+    loss = row$loss,
+    dropout_rate = row$dropout
+  )
+
+  history <- model %>% fit(
+    partial_x_train, partial_y_train,
+    epochs = epochs,
+    batch_size = batch_size,
+    validation_data = list(x_val, y_val),
+    verbose = 0
+  )
+
+  hist <- history$metrics
+  test_metrics <- model %>% evaluate(x_test, y_test, verbose = 0)
+
+  tibble(
+    model_name = row$model_name,
+    layers = row$layers,
+    units = row$units,
+    activation = row$activation,
+    loss = row$loss,
+    dropout = row$dropout,
+    best_val_acc = max(hist$val_accuracy),
+    final_val_acc = tail(hist$val_accuracy, 1),
+    test_acc = as.numeric(test_metrics["accuracy"])
+  )
+}
+
+results <- experiments %>%
+  split(.$model_name) %>%
+  map_dfr(~ run_experiment(.x[1, ]))
+
+results %>% arrange(desc(best_val_acc))
+```
+
+# Summary Table
+
+```{r summary-table}
+summary_tbl <- results %>%
+  arrange(desc(best_val_acc)) %>%
+  mutate(across(c(best_val_acc, final_val_acc, test_acc), ~ round(.x, 4)))
+
+knitr::kable(summary_tbl, caption = "IMDB Hyperparameter Tuning Results")
+```
+
+# Conclusions
+After comparing the results, I selected the model with the best validation accuracy since that metric reflects how well the model generalizes. The 2-layer model with ReLU activation and binary crossentropy achieved the strongest validation performance while maintaining similar test accuracy. Interestingly, adding more layers did not significantly improve performance, and in some cases slightly reduced validation accuracy. Increasing the number of units also did not lead to noticeable gains. Overall, the simpler architecture performed just as well as more complex models, so it was chosen as the final model.
