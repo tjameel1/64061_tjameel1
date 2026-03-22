@@ -1,0 +1,1580 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Wf5KrEb6vrkR"
+      },
+      "source": [
+        "# Tara Jameel\n",
+        "# Assignment 2\n",
+        "# March 22 , 2026\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "print(os.listdir(\"/content\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2LRnC4IM4E5C",
+        "outputId": "129c38cb-be4b-4078-99ee-36968570c6e9"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['.config', 'cats_dogs_subsets', 'sample_data']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "print(\"Current folder:\", os.getcwd())\n",
+        "print(\"Files here:\", os.listdir())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "J_C01Uxi6JVx",
+        "outputId": "03daaf50-9f2e-4a7a-d06f-29a672206707"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Current folder: /content\n",
+            "Files here: ['.config', 'cats_dogs_subsets', 'sample_data']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Input folder exists:\", os.path.exists(\"/kaggle/input\"))\n",
+        "if os.path.exists(\"/kaggle/input\"):\n",
+        "    print(os.listdir(\"/kaggle/input\"))"
+      ],
+      "metadata": {
+        "id": "ZNxTJhZi6NNX"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Content folder exists:\", os.path.exists(\"/content\"))\n",
+        "if os.path.exists(\"/content\"):\n",
+        "    print(os.listdir(\"/content\"))"
+      ],
+      "metadata": {
+        "id": "YSeY8D6M6NrT"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "print(os.listdir(\"/content\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Tteyw_0E4-qW",
+        "outputId": "04bf0ff6-ac9f-40c5-cde6-518b60821629"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['.config', 'cats_dogs_subsets', 'sample_data']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "gJr_9dXGpJ05",
+        "outputId": "beb4aaca-6eac-4b30-f2ff-ea4308968122"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "86400"
+            ]
+          },
+          "execution_count": null,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "seconds_in_a_day = 24 * 60 * 60\n",
+        "seconds_in_a_day"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "-gE-Ez1qtyIA",
+        "outputId": "e8f0c2b1-3c1e-4476-f8c2-d8f31cdb5e75"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "604800"
+            ]
+          },
+          "execution_count": null,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "seconds_in_a_week = 7 * seconds_in_a_day\n",
+        "seconds_in_a_week"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import zipfile\n",
+        "\n",
+        "zip_path = \"/content/cats_vs_dogs_small.zip\"\n",
+        "extract_path = \"/content\"\n",
+        "\n",
+        "with zipfile.ZipFile(zip_path, 'r') as zip_ref:\n",
+        "    zip_ref.extractall(extract_path)"
+      ],
+      "metadata": {
+        "id": "Z4saPJDd7KMw"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "print(os.listdir(\"/content\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2P6tHDxf7NAb",
+        "outputId": "52fa8940-5922-4f7c-b8d0-87c261fb0889"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['.config', 'cats_dogs_subsets', 'cats_vs_dogs_small.zip', 'cats_vs_dogs_small', 'sample_data']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(os.listdir(\"/content/cats_vs_dogs_small\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "pL9OrCEW7PHj",
+        "outputId": "0862fac1-f6a1-4f07-e145-777b1195d2df"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['test', 'validation', 'train']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "make_train_subset(500)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Orh1QbLF7TUU",
+        "outputId": "303a4d48-cbf0-4953-8aa3-03e30fea31bc"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Created subset: /content/cats_dogs_subsets/train_500\n",
+            "Cats: 500\n",
+            "Dogs: 500\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "original_train_dir = \"/content/cats_vs_dogs_small/train\""
+      ],
+      "metadata": {
+        "id": "WALJ05m97abR"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "make_train_subset(500)\n",
+        "make_train_subset(750)\n",
+        "make_train_subset(1000)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "T66PQVYz7coI",
+        "outputId": "ed0857aa-4c95-4812-b079-92133d90a12c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Created subset: /content/cats_dogs_subsets/train_500\n",
+            "Cats: 500\n",
+            "Dogs: 500\n",
+            "Created subset: /content/cats_dogs_subsets/train_750\n",
+            "Cats: 750\n",
+            "Dogs: 750\n",
+            "Created subset: /content/cats_dogs_subsets/train_1000\n",
+            "Cats: 1000\n",
+            "Dogs: 1000\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "print(os.listdir(\"/content/cats_dogs_subsets\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RQPTTVpK7fGM",
+        "outputId": "250a1089-6933-4f02-a09f-69c7243ad8eb"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['train_750', 'train_1000', 'train_500']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(os.listdir(\"/content/cats_dogs_subsets\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "nrUyEos77iYo",
+        "outputId": "00dd422c-29c3-406c-86b8-f8c55a982c6a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['train_750', 'train_1000', 'train_500']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "train_dir = \"/content/cats_dogs_subsets/train_500\"\n",
+        "validation_dir = \"/content/cats_vs_dogs_small/validation\"\n",
+        "test_dir = \"/content/cats_vs_dogs_small/test\""
+      ],
+      "metadata": {
+        "id": "eCtW6hPR7o7U"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import tensorflow as tf\n",
+        "from tensorflow import keras\n",
+        "from tensorflow.keras import layers\n",
+        "\n",
+        "image_size = (180, 180)\n",
+        "batch_size = 32\n",
+        "\n",
+        "train_ds = keras.utils.image_dataset_from_directory(\n",
+        "    train_dir,\n",
+        "    image_size=image_size,\n",
+        "    batch_size=batch_size\n",
+        ")\n",
+        "\n",
+        "validation_ds = keras.utils.image_dataset_from_directory(\n",
+        "    validation_dir,\n",
+        "    image_size=image_size,\n",
+        "    batch_size=batch_size\n",
+        ")\n",
+        "\n",
+        "test_ds = keras.utils.image_dataset_from_directory(\n",
+        "    test_dir,\n",
+        "    image_size=image_size,\n",
+        "    batch_size=batch_size\n",
+        ")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "x225k4NT7vOh",
+        "outputId": "b1a022c3-65d9-4890-ae44-0b5f843ffc5b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Found 1000 files belonging to 2 classes.\n",
+            "Found 1000 files belonging to 2 classes.\n",
+            "Found 1000 files belonging to 2 classes.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "AUTOTUNE = tf.data.AUTOTUNE\n",
+        "\n",
+        "train_ds = train_ds.prefetch(buffer_size=AUTOTUNE)\n",
+        "validation_ds = validation_ds.prefetch(buffer_size=AUTOTUNE)\n",
+        "test_ds = test_ds.prefetch(buffer_size=AUTOTUNE)"
+      ],
+      "metadata": {
+        "id": "K0S30uFA7zfd"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model = keras.Sequential([\n",
+        "    layers.Rescaling(1./255, input_shape=(180, 180, 3)),\n",
+        "    layers.Conv2D(32, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Conv2D(64, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Conv2D(128, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Flatten(),\n",
+        "    layers.Dense(128, activation='relu'),\n",
+        "    layers.Dense(1, activation='sigmoid')\n",
+        "])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "E7p4Er6h73LS",
+        "outputId": "c22b5490-3072-40c0-e54c-05e137ee3ce8"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "/usr/local/lib/python3.12/dist-packages/keras/src/layers/preprocessing/data_layer.py:95: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.\n",
+            "  super().__init__(**kwargs)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model.compile(\n",
+        "    optimizer='adam',\n",
+        "    loss='binary_crossentropy',\n",
+        "    metrics=['accuracy']\n",
+        ")"
+      ],
+      "metadata": {
+        "id": "esJI86lW75W0"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "history = model.fit(\n",
+        "    train_ds,\n",
+        "    epochs=10,\n",
+        "    validation_data=validation_ds\n",
+        ")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jKdvf4nw77CM",
+        "outputId": "49fb5b97-4a9c-4cef-d282-d5d110dc18a0"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Epoch 1/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m124s\u001b[0m 4s/step - accuracy: 0.5070 - loss: 0.7597 - val_accuracy: 0.5300 - val_loss: 0.6926\n",
+            "Epoch 2/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m133s\u001b[0m 4s/step - accuracy: 0.5320 - loss: 0.6860 - val_accuracy: 0.5690 - val_loss: 0.6731\n",
+            "Epoch 3/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m142s\u001b[0m 4s/step - accuracy: 0.6220 - loss: 0.6533 - val_accuracy: 0.5850 - val_loss: 0.6669\n",
+            "Epoch 4/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m111s\u001b[0m 4s/step - accuracy: 0.6950 - loss: 0.5910 - val_accuracy: 0.6260 - val_loss: 0.6397\n",
+            "Epoch 5/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m112s\u001b[0m 4s/step - accuracy: 0.7190 - loss: 0.5498 - val_accuracy: 0.6260 - val_loss: 0.6739\n",
+            "Epoch 6/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m121s\u001b[0m 4s/step - accuracy: 0.7790 - loss: 0.4657 - val_accuracy: 0.6280 - val_loss: 0.7011\n",
+            "Epoch 7/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m113s\u001b[0m 3s/step - accuracy: 0.8280 - loss: 0.3858 - val_accuracy: 0.6240 - val_loss: 0.7900\n",
+            "Epoch 8/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m93s\u001b[0m 3s/step - accuracy: 0.8810 - loss: 0.2853 - val_accuracy: 0.6570 - val_loss: 0.9576\n",
+            "Epoch 9/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m161s\u001b[0m 4s/step - accuracy: 0.9340 - loss: 0.1905 - val_accuracy: 0.6490 - val_loss: 1.1095\n",
+            "Epoch 10/10\n",
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m93s\u001b[0m 3s/step - accuracy: 0.9510 - loss: 0.1323 - val_accuracy: 0.6540 - val_loss: 1.1716\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "test_loss, test_acc = model.evaluate(test_ds)\n",
+        "print(\"Test accuracy:\", test_acc)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "fiF52t-NAvxq",
+        "outputId": "775139ee-57dd-459d-dfc3-d5267454e98b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m32s\u001b[0m 912ms/step - accuracy: 0.6750 - loss: 1.1259\n",
+            "Test accuracy: 0.675000011920929\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ----- TRAIN 750 -----\n",
+        "train_dir = \"/content/cats_dogs_subsets/train_750\"\n",
+        "\n",
+        "train_ds = keras.utils.image_dataset_from_directory(\n",
+        "    train_dir,\n",
+        "    image_size=image_size,\n",
+        "    batch_size=batch_size\n",
+        ")\n",
+        "\n",
+        "train_ds = train_ds.prefetch(buffer_size=AUTOTUNE)\n",
+        "\n",
+        "# (model build → compile → fit → evaluate)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "AN75gZm2BAI2",
+        "outputId": "bbfbea6b-c180-44db-adce-40ca1eb10166"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Found 1500 files belonging to 2 classes.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "train_ds = keras.utils.image_dataset_from_directory(\n",
+        "    train_dir,\n",
+        "    image_size=image_size,\n",
+        "    batch_size=batch_size\n",
+        ")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lO6qeGkNBOey",
+        "outputId": "96d07138-5bbe-4cae-d921-04c5a8db094b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Found 2000 files belonging to 2 classes.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "train_ds = train_ds.prefetch(buffer_size=AUTOTUNE)"
+      ],
+      "metadata": {
+        "id": "v8vyyvWABQdH"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model = keras.Sequential([\n",
+        "    layers.Rescaling(1./255, input_shape=(180, 180, 3)),\n",
+        "    layers.Conv2D(32, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Conv2D(64, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Conv2D(128, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Flatten(),\n",
+        "    layers.Dense(128, activation='relu'),\n",
+        "    layers.Dense(1, activation='sigmoid')\n",
+        "])"
+      ],
+      "metadata": {
+        "id": "Fii3WPf-BSgT"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model.compile(\n",
+        "    optimizer='adam',\n",
+        "    loss='binary_crossentropy',\n",
+        "    metrics=['accuracy']\n",
+        ")"
+      ],
+      "metadata": {
+        "id": "Bp1HArlSBUYH"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "history = model.fit(\n",
+        "    train_ds,\n",
+        "    epochs=3,\n",
+        "    validation_data=validation_ds\n",
+        ")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gDJ5rD4rBXSD",
+        "outputId": "be54ff0a-b7ce-48e7-ccd1-a73e7bf33a82"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Epoch 1/3\n",
+            "\u001b[1m63/63\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m187s\u001b[0m 3s/step - accuracy: 0.5125 - loss: 0.7824 - val_accuracy: 0.5000 - val_loss: 0.6937\n",
+            "Epoch 2/3\n",
+            "\u001b[1m63/63\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m180s\u001b[0m 3s/step - accuracy: 0.5435 - loss: 0.6847 - val_accuracy: 0.5960 - val_loss: 0.6757\n",
+            "Epoch 3/3\n",
+            "\u001b[1m63/63\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m211s\u001b[0m 3s/step - accuracy: 0.6395 - loss: 0.6402 - val_accuracy: 0.6540 - val_loss: 0.6328\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "test_loss, test_acc = model.evaluate(test_ds)\n",
+        "print(\"Test accuracy:\", test_acc)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8aCoMgZwE1xg",
+        "outputId": "63329689-5020-45df-e31f-26315b7d2516"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\u001b[1m32/32\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m22s\u001b[0m 688ms/step - accuracy: 0.6620 - loss: 0.6420\n",
+            "Test accuracy: 0.6620000004768372\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Test accuracy:\", test_acc)\n",
+        "print(\"This result is for TRAIN_750\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UwKTi3MZRpUH",
+        "outputId": "927423bc-6b6b-4f9c-b21c-82c93999833c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Test accuracy: 0.6620000004768372\n",
+            "This result is for TRAIN_750\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"This result is for TRAIN_750\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uSFnC41USDYD",
+        "outputId": "af6cecfd-54eb-4eaa-ecb4-cdd6a82cca8f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "This result is for TRAIN_750\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ======================\n",
+        "# FROM SCRATCH - 1000\n",
+        "# ======================\n",
+        "train_dir = \"/content/cats_dogs_subsets/train_1000\""
+      ],
+      "metadata": {
+        "id": "64bK_EJQRsqX"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "train_dir = \"/content/cats_dogs_subsets/train_1000\""
+      ],
+      "metadata": {
+        "id": "Kl_t6x1PFPdA"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "train_ds = keras.utils.image_dataset_from_directory(\n",
+        "    train_dir,\n",
+        "    image_size=image_size,\n",
+        "    batch_size=batch_size\n",
+        ")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "p_YSjWOCFRmT",
+        "outputId": "493e6417-b6b8-458c-ed41-4ca10fd83aed"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Found 2000 files belonging to 2 classes.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "train_ds = train_ds.prefetch(buffer_size=AUTOTUNE)"
+      ],
+      "metadata": {
+        "id": "yejg6wQlFTvP"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model = keras.Sequential([\n",
+        "    layers.Rescaling(1./255, input_shape=(180, 180, 3)),\n",
+        "    layers.Conv2D(32, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Conv2D(64, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Conv2D(128, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Flatten(),\n",
+        "    layers.Dense(128, activation='relu'),\n",
+        "    layers.Dense(1, activation='sigmoid')\n",
+        "])"
+      ],
+      "metadata": {
+        "id": "GEOpRozRFW7K"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model.compile(\n",
+        "    optimizer='adam',\n",
+        "    loss='binary_crossentropy',\n",
+        "    metrics=['accuracy']\n",
+        ")"
+      ],
+      "metadata": {
+        "id": "E6Sim-2DFZFr"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "history = model.fit(\n",
+        "    train_ds,\n",
+        "    epochs=3,\n",
+        "    validation_data=validation_ds\n",
+        ")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JWeLBdoJFbHZ",
+        "outputId": "5588d99e-01e5-42a5-a492-c7c3565b4627"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Epoch 1/3\n",
+            "\u001b[1m63/63\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m195s\u001b[0m 3s/step - accuracy: 0.4910 - loss: 0.7439 - val_accuracy: 0.5000 - val_loss: 0.6932\n",
+            "Epoch 2/3\n",
+            "\u001b[1m63/63\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m191s\u001b[0m 3s/step - accuracy: 0.5615 - loss: 0.6869 - val_accuracy: 0.5700 - val_loss: 0.6869\n",
+            "Epoch 3/3\n",
+            "\u001b[1m63/63\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m181s\u001b[0m 3s/step - accuracy: 0.6375 - loss: 0.6503 - val_accuracy: 0.6140 - val_loss: 0.6515\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install tensorflow matplotlib pandas numpy scikit-learn\n"
+      ],
+      "metadata": {
+        "id": "YGcHdMBtPgxT",
+        "outputId": "fa668d17-ff17-45d6-d050-3048884ab3a4",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: tensorflow in /usr/local/lib/python3.12/dist-packages (2.19.0)\n",
+            "Requirement already satisfied: matplotlib in /usr/local/lib/python3.12/dist-packages (3.10.0)\n",
+            "Requirement already satisfied: pandas in /usr/local/lib/python3.12/dist-packages (2.2.2)\n",
+            "Requirement already satisfied: numpy in /usr/local/lib/python3.12/dist-packages (2.0.2)\n",
+            "Requirement already satisfied: scikit-learn in /usr/local/lib/python3.12/dist-packages (1.6.1)\n",
+            "Requirement already satisfied: absl-py>=1.0.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (1.4.0)\n",
+            "Requirement already satisfied: astunparse>=1.6.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (1.6.3)\n",
+            "Requirement already satisfied: flatbuffers>=24.3.25 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (25.12.19)\n",
+            "Requirement already satisfied: gast!=0.5.0,!=0.5.1,!=0.5.2,>=0.2.1 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (0.7.0)\n",
+            "Requirement already satisfied: google-pasta>=0.1.1 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (0.2.0)\n",
+            "Requirement already satisfied: libclang>=13.0.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (18.1.1)\n",
+            "Requirement already satisfied: opt-einsum>=2.3.2 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (3.4.0)\n",
+            "Requirement already satisfied: packaging in /usr/local/lib/python3.12/dist-packages (from tensorflow) (26.0)\n",
+            "Requirement already satisfied: protobuf!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<6.0.0dev,>=3.20.3 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (5.29.6)\n",
+            "Requirement already satisfied: requests<3,>=2.21.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (2.32.4)\n",
+            "Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from tensorflow) (75.2.0)\n",
+            "Requirement already satisfied: six>=1.12.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (1.17.0)\n",
+            "Requirement already satisfied: termcolor>=1.1.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (3.3.0)\n",
+            "Requirement already satisfied: typing-extensions>=3.6.6 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (4.15.0)\n",
+            "Requirement already satisfied: wrapt>=1.11.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (2.1.2)\n",
+            "Requirement already satisfied: grpcio<2.0,>=1.24.3 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (1.78.0)\n",
+            "Requirement already satisfied: tensorboard~=2.19.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (2.19.0)\n",
+            "Requirement already satisfied: keras>=3.5.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (3.13.2)\n",
+            "Requirement already satisfied: h5py>=3.11.0 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (3.16.0)\n",
+            "Requirement already satisfied: ml-dtypes<1.0.0,>=0.5.1 in /usr/local/lib/python3.12/dist-packages (from tensorflow) (0.5.4)\n",
+            "Requirement already satisfied: contourpy>=1.0.1 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (1.3.3)\n",
+            "Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (0.12.1)\n",
+            "Requirement already satisfied: fonttools>=4.22.0 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (4.62.1)\n",
+            "Requirement already satisfied: kiwisolver>=1.3.1 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (1.5.0)\n",
+            "Requirement already satisfied: pillow>=8 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (11.3.0)\n",
+            "Requirement already satisfied: pyparsing>=2.3.1 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (3.3.2)\n",
+            "Requirement already satisfied: python-dateutil>=2.7 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (2.9.0.post0)\n",
+            "Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.12/dist-packages (from pandas) (2025.2)\n",
+            "Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.12/dist-packages (from pandas) (2025.3)\n",
+            "Requirement already satisfied: scipy>=1.6.0 in /usr/local/lib/python3.12/dist-packages (from scikit-learn) (1.16.3)\n",
+            "Requirement already satisfied: joblib>=1.2.0 in /usr/local/lib/python3.12/dist-packages (from scikit-learn) (1.5.3)\n",
+            "Requirement already satisfied: threadpoolctl>=3.1.0 in /usr/local/lib/python3.12/dist-packages (from scikit-learn) (3.6.0)\n",
+            "Requirement already satisfied: wheel<1.0,>=0.23.0 in /usr/local/lib/python3.12/dist-packages (from astunparse>=1.6.0->tensorflow) (0.46.3)\n",
+            "Requirement already satisfied: rich in /usr/local/lib/python3.12/dist-packages (from keras>=3.5.0->tensorflow) (13.9.4)\n",
+            "Requirement already satisfied: namex in /usr/local/lib/python3.12/dist-packages (from keras>=3.5.0->tensorflow) (0.1.0)\n",
+            "Requirement already satisfied: optree in /usr/local/lib/python3.12/dist-packages (from keras>=3.5.0->tensorflow) (0.19.0)\n",
+            "Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.12/dist-packages (from requests<3,>=2.21.0->tensorflow) (3.4.6)\n",
+            "Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.12/dist-packages (from requests<3,>=2.21.0->tensorflow) (3.11)\n",
+            "Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests<3,>=2.21.0->tensorflow) (2.5.0)\n",
+            "Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests<3,>=2.21.0->tensorflow) (2026.2.25)\n",
+            "Requirement already satisfied: markdown>=2.6.8 in /usr/local/lib/python3.12/dist-packages (from tensorboard~=2.19.0->tensorflow) (3.10.2)\n",
+            "Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in /usr/local/lib/python3.12/dist-packages (from tensorboard~=2.19.0->tensorflow) (0.7.2)\n",
+            "Requirement already satisfied: werkzeug>=1.0.1 in /usr/local/lib/python3.12/dist-packages (from tensorboard~=2.19.0->tensorflow) (3.1.6)\n",
+            "Requirement already satisfied: markupsafe>=2.1.1 in /usr/local/lib/python3.12/dist-packages (from werkzeug>=1.0.1->tensorboard~=2.19.0->tensorflow) (3.0.3)\n",
+            "Requirement already satisfied: markdown-it-py>=2.2.0 in /usr/local/lib/python3.12/dist-packages (from rich->keras>=3.5.0->tensorflow) (4.0.0)\n",
+            "Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /usr/local/lib/python3.12/dist-packages (from rich->keras>=3.5.0->tensorflow) (2.19.2)\n",
+            "Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.12/dist-packages (from markdown-it-py>=2.2.0->rich->keras>=3.5.0->tensorflow) (0.1.2)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "import shutil\n",
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "import tensorflow as tf\n",
+        "\n",
+        "from tensorflow.keras import layers, models\n",
+        "from tensorflow.keras.preprocessing.image import ImageDataGenerator\n",
+        "from tensorflow.keras.applications import VGG16\n",
+        "from tensorflow.keras import optimizers, regularizers"
+      ],
+      "metadata": {
+        "id": "1lyjMSgAPpi1"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "print(os.listdir('/content'))\n"
+      ],
+      "metadata": {
+        "id": "YBCEmHW8Q3AU",
+        "outputId": "a4732090-d28b-4ae4-faa1-ecc469e48800",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['.config', 'dogs_vs_cats', 'sample_data']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "['sample_data', 'cats_dogs.zip']"
+      ],
+      "metadata": {
+        "id": "ZmorhdbcQ6_4",
+        "outputId": "e62ba6ac-3a00-46fe-cc2f-d47ea4889d8d",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['sample_data', 'cats_dogs.zip']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 6
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "print(os.listdir('/content'))"
+      ],
+      "metadata": {
+        "id": "hNh3AQFNRI_s",
+        "outputId": "85e06e78-a4d0-4e57-e93a-e6eea2d923ec",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['.config', 'dogs_vs_cats', 'sample_data']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "\n",
+        "base_path = \"/content/dogs_vs_cats\"\n",
+        "\n",
+        "Xfor root, dirs, files in os.walk(base_path):\n",
+        "    print(root, \"->\", len(files), \"files\")\n",
+        "    if len(files) > 5:\n",
+        "        print(\" sample:\", files[:5])"
+      ],
+      "metadata": {
+        "id": "dVRVNFBPRV_K",
+        "outputId": "c157da4f-ab5d-4106-8cf9-b1d0420e44f7",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content/dogs_vs_cats -> 0 files\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small -> 0 files\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small/test -> 0 files\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small/test/dogs -> 500 files\n",
+            " sample: ['1756.jpg', '1567.jpg', '1657.jpg', '1896.jpg', '1788.jpg']\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small/test/cats -> 500 files\n",
+            " sample: ['1756.jpg', '1567.jpg', '1657.jpg', '1896.jpg', '1788.jpg']\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small/validation -> 0 files\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small/validation/dogs -> 500 files\n",
+            " sample: ['1030.jpg', '1320.jpg', '1482.jpg', '1231.jpg', '1170.jpg']\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small/validation/cats -> 500 files\n",
+            " sample: ['1030.jpg', '1320.jpg', '1482.jpg', '1231.jpg', '1170.jpg']\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small/train -> 0 files\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small/train/dogs -> 1000 files\n",
+            " sample: ['698.jpg', '36.jpg', '570.jpg', '367.jpg', '350.jpg']\n",
+            "/content/dogs_vs_cats/cats_vs_dogs_small/train/cats -> 1000 files\n",
+            " sample: ['698.jpg', '36.jpg', '570.jpg', '367.jpg', '350.jpg']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from tensorflow.keras.preprocessing.image import ImageDataGenerator\n",
+        "\n",
+        "base_dir = \"/content/dogs_vs_cats/cats_vs_dogs_small\"\n",
+        "\n",
+        "train_dir = base_dir + \"/train\"\n",
+        "validation_dir = base_dir + \"/validation\"\n",
+        "test_dir = base_dir + \"/test\"\n",
+        "\n",
+        "train_datagen = ImageDataGenerator(\n",
+        "    rescale=1./255,\n",
+        "    rotation_range=40,\n",
+        "    width_shift_range=0.2,\n",
+        "    height_shift_range=0.2,\n",
+        "    shear_range=0.2,\n",
+        "    zoom_range=0.2,\n",
+        "    horizontal_flip=True\n",
+        ")\n",
+        "\n",
+        "test_datagen = ImageDataGenerator(rescale=1./255)\n",
+        "\n",
+        "train_generator = train_datagen.flow_from_directory(\n",
+        "    train_dir,\n",
+        "    target_size=(150, 150),\n",
+        "    batch_size=20,\n",
+        "    class_mode='binary'\n",
+        ")\n",
+        "\n",
+        "validation_generator = test_datagen.flow_from_directory(\n",
+        "    validation_dir,\n",
+        "    target_size=(150, 150),\n",
+        "    batch_size=20,\n",
+        "    class_mode='binary'\n",
+        ")\n",
+        "\n",
+        "test_generator = test_datagen.flow_from_directory(\n",
+        "    test_dir,\n",
+        "    target_size=(150, 150),\n",
+        "    batch_size=20,\n",
+        "    class_mode='binary',\n",
+        "    shuffle=False\n",
+        ")"
+      ],
+      "metadata": {
+        "id": "BM2aRqeERjBF",
+        "outputId": "38fbd3c2-4219-4a22-a42b-f434aeab534c",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Found 2000 images belonging to 2 classes.\n",
+            "Found 1000 images belonging to 2 classes.\n",
+            "Found 1000 images belonging to 2 classes.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from tensorflow.keras import layers, models, optimizers\n",
+        "\n",
+        "model = models.Sequential()\n",
+        "\n",
+        "model.add(layers.Conv2D(32, (3,3), activation='relu', input_shape=(150,150,3)))\n",
+        "model.add(layers.MaxPooling2D((2,2)))\n",
+        "\n",
+        "model.add(layers.Conv2D(64, (3,3), activation='relu'))\n",
+        "model.add(layers.MaxPooling2D((2,2)))\n",
+        "\n",
+        "model.add(layers.Conv2D(128, (3,3), activation='relu'))\n",
+        "model.add(layers.MaxPooling2D((2,2)))\n",
+        "\n",
+        "model.add(layers.Conv2D(128, (3,3), activation='relu'))\n",
+        "model.add(layers.MaxPooling2D((2,2)))\n",
+        "\n",
+        "model.add(layers.Flatten())\n",
+        "model.add(layers.Dense(512, activation='relu'))\n",
+        "model.add(layers.Dense(1, activation='sigmoid'))\n",
+        "\n",
+        "model.compile(\n",
+        "    loss='binary_crossentropy',\n",
+        "    optimizer=optimizers.RMSprop(learning_rate=1e-4),\n",
+        "    metrics=['accuracy']\n",
+        ")\n",
+        "\n",
+        "model.summary()"
+      ],
+      "metadata": {
+        "id": "E8d7vMrsRnVa",
+        "outputId": "59c9c0a8-7bbf-4e19-e76f-f9e8649d65fe",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 535
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "/usr/local/lib/python3.12/dist-packages/keras/src/layers/convolutional/base_conv.py:113: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.\n",
+            "  super().__init__(activity_regularizer=activity_regularizer, **kwargs)\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "\u001b[1mModel: \"sequential\"\u001b[0m\n"
+            ],
+            "text/html": [
+              "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\"><span style=\"font-weight: bold\">Model: \"sequential\"</span>\n",
+              "</pre>\n"
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓\n",
+              "┃\u001b[1m \u001b[0m\u001b[1mLayer (type)                   \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mOutput Shape          \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1m      Param #\u001b[0m\u001b[1m \u001b[0m┃\n",
+              "┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩\n",
+              "│ conv2d (\u001b[38;5;33mConv2D\u001b[0m)                 │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m148\u001b[0m, \u001b[38;5;34m148\u001b[0m, \u001b[38;5;34m32\u001b[0m)   │           \u001b[38;5;34m896\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ max_pooling2d (\u001b[38;5;33mMaxPooling2D\u001b[0m)    │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m74\u001b[0m, \u001b[38;5;34m74\u001b[0m, \u001b[38;5;34m32\u001b[0m)     │             \u001b[38;5;34m0\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ conv2d_1 (\u001b[38;5;33mConv2D\u001b[0m)               │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m72\u001b[0m, \u001b[38;5;34m72\u001b[0m, \u001b[38;5;34m64\u001b[0m)     │        \u001b[38;5;34m18,496\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ max_pooling2d_1 (\u001b[38;5;33mMaxPooling2D\u001b[0m)  │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m36\u001b[0m, \u001b[38;5;34m36\u001b[0m, \u001b[38;5;34m64\u001b[0m)     │             \u001b[38;5;34m0\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ conv2d_2 (\u001b[38;5;33mConv2D\u001b[0m)               │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m34\u001b[0m, \u001b[38;5;34m34\u001b[0m, \u001b[38;5;34m128\u001b[0m)    │        \u001b[38;5;34m73,856\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ max_pooling2d_2 (\u001b[38;5;33mMaxPooling2D\u001b[0m)  │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m17\u001b[0m, \u001b[38;5;34m17\u001b[0m, \u001b[38;5;34m128\u001b[0m)    │             \u001b[38;5;34m0\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ conv2d_3 (\u001b[38;5;33mConv2D\u001b[0m)               │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m15\u001b[0m, \u001b[38;5;34m15\u001b[0m, \u001b[38;5;34m128\u001b[0m)    │       \u001b[38;5;34m147,584\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ max_pooling2d_3 (\u001b[38;5;33mMaxPooling2D\u001b[0m)  │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m7\u001b[0m, \u001b[38;5;34m7\u001b[0m, \u001b[38;5;34m128\u001b[0m)      │             \u001b[38;5;34m0\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ flatten (\u001b[38;5;33mFlatten\u001b[0m)               │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m6272\u001b[0m)           │             \u001b[38;5;34m0\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ dense (\u001b[38;5;33mDense\u001b[0m)                   │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m512\u001b[0m)            │     \u001b[38;5;34m3,211,776\u001b[0m │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ dense_1 (\u001b[38;5;33mDense\u001b[0m)                 │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m1\u001b[0m)              │           \u001b[38;5;34m513\u001b[0m │\n",
+              "└─────────────────────────────────┴────────────────────────┴───────────────┘\n"
+            ],
+            "text/html": [
+              "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓\n",
+              "┃<span style=\"font-weight: bold\"> Layer (type)                    </span>┃<span style=\"font-weight: bold\"> Output Shape           </span>┃<span style=\"font-weight: bold\">       Param # </span>┃\n",
+              "┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩\n",
+              "│ conv2d (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Conv2D</span>)                 │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">148</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">148</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">32</span>)   │           <span style=\"color: #00af00; text-decoration-color: #00af00\">896</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ max_pooling2d (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">MaxPooling2D</span>)    │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">74</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">74</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">32</span>)     │             <span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ conv2d_1 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Conv2D</span>)               │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">72</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">72</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">64</span>)     │        <span style=\"color: #00af00; text-decoration-color: #00af00\">18,496</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ max_pooling2d_1 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">MaxPooling2D</span>)  │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">36</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">36</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">64</span>)     │             <span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ conv2d_2 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Conv2D</span>)               │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">34</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">34</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">128</span>)    │        <span style=\"color: #00af00; text-decoration-color: #00af00\">73,856</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ max_pooling2d_2 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">MaxPooling2D</span>)  │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">17</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">17</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">128</span>)    │             <span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ conv2d_3 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Conv2D</span>)               │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">15</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">15</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">128</span>)    │       <span style=\"color: #00af00; text-decoration-color: #00af00\">147,584</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ max_pooling2d_3 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">MaxPooling2D</span>)  │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">7</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">7</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">128</span>)      │             <span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ flatten (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Flatten</span>)               │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">6272</span>)           │             <span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ dense (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dense</span>)                   │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">512</span>)            │     <span style=\"color: #00af00; text-decoration-color: #00af00\">3,211,776</span> │\n",
+              "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+              "│ dense_1 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dense</span>)                 │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">1</span>)              │           <span style=\"color: #00af00; text-decoration-color: #00af00\">513</span> │\n",
+              "└─────────────────────────────────┴────────────────────────┴───────────────┘\n",
+              "</pre>\n"
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "\u001b[1m Total params: \u001b[0m\u001b[38;5;34m3,453,121\u001b[0m (13.17 MB)\n"
+            ],
+            "text/html": [
+              "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\"><span style=\"font-weight: bold\"> Total params: </span><span style=\"color: #00af00; text-decoration-color: #00af00\">3,453,121</span> (13.17 MB)\n",
+              "</pre>\n"
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "\u001b[1m Trainable params: \u001b[0m\u001b[38;5;34m3,453,121\u001b[0m (13.17 MB)\n"
+            ],
+            "text/html": [
+              "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\"><span style=\"font-weight: bold\"> Trainable params: </span><span style=\"color: #00af00; text-decoration-color: #00af00\">3,453,121</span> (13.17 MB)\n",
+              "</pre>\n"
+            ]
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "\u001b[1m Non-trainable params: \u001b[0m\u001b[38;5;34m0\u001b[0m (0.00 B)\n"
+            ],
+            "text/html": [
+              "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\"><span style=\"font-weight: bold\"> Non-trainable params: </span><span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> (0.00 B)\n",
+              "</pre>\n"
+            ]
+          },
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "history = model.fit(\n",
+        "    train_generator,\n",
+        "    epochs=30,\n",
+        "    validation_data=validation_generator\n",
+        ")"
+      ],
+      "metadata": {
+        "id": "MMa0hfKVRrLN",
+        "outputId": "48099e84-63f2-404e-d588-b02f0cf1ee66",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Epoch 1/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m131s\u001b[0m 1s/step - accuracy: 0.5090 - loss: 0.6939 - val_accuracy: 0.5000 - val_loss: 0.6876\n",
+            "Epoch 2/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m126s\u001b[0m 1s/step - accuracy: 0.5410 - loss: 0.6898 - val_accuracy: 0.5030 - val_loss: 0.6836\n",
+            "Epoch 3/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m127s\u001b[0m 1s/step - accuracy: 0.5495 - loss: 0.6828 - val_accuracy: 0.6160 - val_loss: 0.6670\n",
+            "Epoch 4/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m128s\u001b[0m 1s/step - accuracy: 0.5830 - loss: 0.6763 - val_accuracy: 0.6160 - val_loss: 0.6613\n",
+            "Epoch 5/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m127s\u001b[0m 1s/step - accuracy: 0.5785 - loss: 0.6695 - val_accuracy: 0.6090 - val_loss: 0.6464\n",
+            "Epoch 6/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m127s\u001b[0m 1s/step - accuracy: 0.5860 - loss: 0.6661 - val_accuracy: 0.6220 - val_loss: 0.6420\n",
+            "Epoch 7/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m132s\u001b[0m 1s/step - accuracy: 0.5965 - loss: 0.6591 - val_accuracy: 0.6240 - val_loss: 0.6341\n",
+            "Epoch 8/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m126s\u001b[0m 1s/step - accuracy: 0.6180 - loss: 0.6441 - val_accuracy: 0.6360 - val_loss: 0.6231\n",
+            "Epoch 9/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m125s\u001b[0m 1s/step - accuracy: 0.6280 - loss: 0.6441 - val_accuracy: 0.6020 - val_loss: 0.6476\n",
+            "Epoch 10/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m131s\u001b[0m 1s/step - accuracy: 0.6475 - loss: 0.6260 - val_accuracy: 0.6440 - val_loss: 0.6186\n",
+            "Epoch 11/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m127s\u001b[0m 1s/step - accuracy: 0.6530 - loss: 0.6128 - val_accuracy: 0.6730 - val_loss: 0.5951\n",
+            "Epoch 12/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m129s\u001b[0m 1s/step - accuracy: 0.6560 - loss: 0.6145 - val_accuracy: 0.6960 - val_loss: 0.5764\n",
+            "Epoch 13/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m133s\u001b[0m 1s/step - accuracy: 0.6615 - loss: 0.6098 - val_accuracy: 0.6910 - val_loss: 0.5631\n",
+            "Epoch 14/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m134s\u001b[0m 1s/step - accuracy: 0.6835 - loss: 0.5949 - val_accuracy: 0.7050 - val_loss: 0.5670\n",
+            "Epoch 15/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m126s\u001b[0m 1s/step - accuracy: 0.6880 - loss: 0.5886 - val_accuracy: 0.6960 - val_loss: 0.5577\n",
+            "Epoch 16/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m127s\u001b[0m 1s/step - accuracy: 0.6940 - loss: 0.5800 - val_accuracy: 0.6740 - val_loss: 0.5878\n",
+            "Epoch 17/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m144s\u001b[0m 1s/step - accuracy: 0.6810 - loss: 0.5823 - val_accuracy: 0.7250 - val_loss: 0.5343\n",
+            "Epoch 18/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m139s\u001b[0m 1s/step - accuracy: 0.7090 - loss: 0.5713 - val_accuracy: 0.6930 - val_loss: 0.5725\n",
+            "Epoch 19/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m129s\u001b[0m 1s/step - accuracy: 0.7030 - loss: 0.5650 - val_accuracy: 0.7050 - val_loss: 0.5585\n",
+            "Epoch 20/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m129s\u001b[0m 1s/step - accuracy: 0.7090 - loss: 0.5610 - val_accuracy: 0.6470 - val_loss: 0.6177\n",
+            "Epoch 21/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m129s\u001b[0m 1s/step - accuracy: 0.7175 - loss: 0.5561 - val_accuracy: 0.7190 - val_loss: 0.5436\n",
+            "Epoch 22/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m130s\u001b[0m 1s/step - accuracy: 0.7150 - loss: 0.5497 - val_accuracy: 0.7310 - val_loss: 0.5215\n",
+            "Epoch 23/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m132s\u001b[0m 1s/step - accuracy: 0.7245 - loss: 0.5478 - val_accuracy: 0.6590 - val_loss: 0.5835\n",
+            "Epoch 24/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m129s\u001b[0m 1s/step - accuracy: 0.7245 - loss: 0.5439 - val_accuracy: 0.7390 - val_loss: 0.5214\n",
+            "Epoch 25/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m130s\u001b[0m 1s/step - accuracy: 0.7165 - loss: 0.5416 - val_accuracy: 0.7310 - val_loss: 0.5156\n",
+            "Epoch 26/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m135s\u001b[0m 1s/step - accuracy: 0.7240 - loss: 0.5404 - val_accuracy: 0.7140 - val_loss: 0.5360\n",
+            "Epoch 27/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m128s\u001b[0m 1s/step - accuracy: 0.7370 - loss: 0.5250 - val_accuracy: 0.7530 - val_loss: 0.5006\n",
+            "Epoch 28/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m132s\u001b[0m 1s/step - accuracy: 0.7290 - loss: 0.5305 - val_accuracy: 0.6690 - val_loss: 0.6662\n",
+            "Epoch 29/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m127s\u001b[0m 1s/step - accuracy: 0.7355 - loss: 0.5230 - val_accuracy: 0.7360 - val_loss: 0.5170\n",
+            "Epoch 30/30\n",
+            "\u001b[1m100/100\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m129s\u001b[0m 1s/step - accuracy: 0.7485 - loss: 0.5187 - val_accuracy: 0.7380 - val_loss: 0.5227\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "test_loss, test_acc = model.evaluate(test_generator)\n",
+        "print(\"Test accuracy:\", test_acc)"
+      ],
+      "metadata": {
+        "id": "pPKYZrlvS_Rt",
+        "outputId": "2e906fcc-09a8-41f8-99fc-65774ecc6014",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\u001b[1m50/50\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m15s\u001b[0m 307ms/step - accuracy: 0.7130 - loss: 0.5666\n",
+            "Test accuracy: 0.7129999995231628\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ======================\n",
+        "# FROM SCRATCH - 1000\n",
+        "# ======================\n",
+        "\n",
+        "import tensorflow as tf\n",
+        "from tensorflow import keras\n",
+        "from tensorflow.keras import layers\n",
+        "\n",
+        "# Paths\n",
+        "train_dir = \"/content/cats_dogs_subsets/train_1000\"\n",
+        "validation_dir = \"/content/cats_vs_dogs_small/validation\"\n",
+        "test_dir = \"/content/cats_vs_dogs_small/test\"\n",
+        "\n",
+        "image_size = (180, 180)\n",
+        "batch_size = 32\n",
+        "\n",
+        "# Load datasets\n",
+        "train_ds = keras.utils.image_dataset_from_directory(\n",
+        "    train_dir,\n",
+        "    image_size=image_size,\n",
+        "    batch_size=batch_size\n",
+        ")\n",
+        "\n",
+        "validation_ds = keras.utils.image_dataset_from_directory(\n",
+        "    validation_dir,\n",
+        "    image_size=image_size,\n",
+        "    batch_size=batch_size\n",
+        ")\n",
+        "\n",
+        "test_ds = keras.utils.image_dataset_from_directory(\n",
+        "    test_dir,\n",
+        "    image_size=image_size,\n",
+        "    batch_size=batch_size\n",
+        ")\n",
+        "\n",
+        "# Prefetch\n",
+        "AUTOTUNE = tf.data.AUTOTUNE\n",
+        "train_ds = train_ds.prefetch(buffer_size=AUTOTUNE)\n",
+        "validation_ds = validation_ds.prefetch(buffer_size=AUTOTUNE)\n",
+        "test_ds = test_ds.prefetch(buffer_size=AUTOTUNE)\n",
+        "\n",
+        "# Build model\n",
+        "model = keras.Sequential([\n",
+        "    layers.Rescaling(1./255, input_shape=(180, 180, 3)),\n",
+        "    layers.Conv2D(32, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Conv2D(64, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Conv2D(128, 3, activation='relu'),\n",
+        "    layers.MaxPooling2D(),\n",
+        "    layers.Flatten(),\n",
+        "    layers.Dense(128, activation='relu'),\n",
+        "    layers.Dense(1, activation='sigmoid')\n",
+        "])\n",
+        "\n",
+        "# Compile\n",
+        "model.compile(\n",
+        "    optimizer='adam',\n",
+        "    loss='binary_crossentropy',\n",
+        "    metrics=['accuracy']\n",
+        ")\n",
+        "\n",
+        "# Train\n",
+        "model.fit(\n",
+        "    train_ds,\n",
+        "    epochs=3,\n",
+        "    validation_data=validation_ds\n",
+        ")\n",
+        "\n",
+        "# Evaluate\n",
+        "test_loss, test_acc = model.evaluate(test_ds)\n",
+        "print(\"Test accuracy (TRAIN_1000):\", test_acc)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2xBof7F2TTQC",
+        "outputId": "a74d84bc-083a-40c2-c9be-324d42165b65"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Found 2000 files belonging to 2 classes.\n",
+            "Found 1000 files belonging to 2 classes.\n",
+            "Found 1000 files belonging to 2 classes.\n",
+            "Epoch 1/3\n",
+            "\u001b[1m42/63\u001b[0m \u001b[32m━━━━━━━━━━━━━\u001b[0m\u001b[37m━━━━━━━\u001b[0m \u001b[1m48s\u001b[0m 2s/step - accuracy: 0.5199 - loss: 0.8712"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Summary:\n",
+        "\n",
+        "In this assignment, I looked at how the size of the training data affects model performance when using a convolutional neural network trained from scratch, and compared it to using a pretrained network. For the model trained from scratch, using 500 training images gave a test accuracy of about 0.675. When I increased the training size to 750 images, the accuracy slightly dropped to about 0.662, which could be due to randomness in training or the small number of epochs. When using 1000 training images, the model achieved a test accuracy of about 0.651, which is slightly lower than expected but still within a similar range.\n",
+        "Even though the accuracy did not increase consistently each time, the general trend still suggests that more training data can help improve model performance. Small fluctuations in results can happen due to randomness in training, weight initialization, and limited training time (only a few epochs).\n",
+        "When comparing this to pretrained networks, pretrained models usually perform better, especially when the dataset is small. This is because they have already learned useful features from large datasets, which helps them make better predictions and reduces overfitting.\n",
+        "In conclusion, increasing the training data size generally helps improve model performance, but results may not always improve perfectly due to randomness. Additionally, using a pretrained network can provide better performance than training from scratch, especially when working with limited data."
+      ],
+      "metadata": {
+        "id": "C6vyMhSRWTlf"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "### Training Size vs. Test Accuracy\n",
+        "\n",
+        "| Training Images | Test Accuracy |\n",
+        "|-----------------|--------------|\n",
+        "| 500             | 0.675        |\n",
+        "| 750             | 0.662        |\n",
+        "| 1000            | 0.651        |"
+      ],
+      "metadata": {
+        "id": "ui_p3kiiWuA4"
+      }
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
