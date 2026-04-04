@@ -1,0 +1,302 @@
+---
+title: "Assignment 3: Time-Series Data"
+author: "Tara Jameel"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+Sys.setenv(TF_CPP_MIN_LOG_LEVEL = "2")
+Sys.setenv(PYTHONWARNINGS = "ignore")
+```
+
+# Introduction
+The purpose of this assignment is to use recurrent neural networks (RNNs) to analyze and forecast weather time-series data. In this report, I compare different deep learning models we learned in class, including GRU, stacked GRU, LSTM, and a hybrid Conv1D + GRU model. The goal is to find which model gives the best validation mean absolute error (MAE) and then test that model on the test dataset.
+
+# Libraries
+
+```{r libraries}
+library(keras)
+library(tensorflow)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+# Data Preparation
+
+## Load the Data
+
+```{r load-data}
+possible_paths <- c(
+  "jena_climate_2009_2016.csv",
+  "/Users/lj/Downloads/jena_climate_2009_2016.csv"
+)
+
+fname <- possible_paths[file.exists(possible_paths)][1]
+
+climate_data <- read.csv(fname)
+
+head(climate_data)
+dim(climate_data)
+```
+
+## Inspect Missing Values
+
+```{r missing-values}
+colSums(is.na(climate_data))
+```
+
+## Remove the Date Column
+
+```{r prep-data}
+raw_data <- climate_data[, -1]
+raw_data <- as.matrix(raw_data)
+
+cat("Rows:", nrow(raw_data), "\n")
+cat("Columns:", ncol(raw_data), "\n")
+```
+
+## Normalize the Data
+
+```{r normalize-data}
+num_train_samples <- round(0.5 * nrow(raw_data))
+num_val_samples   <- round(0.25 * nrow(raw_data))
+num_test_samples  <- nrow(raw_data) - num_train_samples - num_val_samples
+
+train_data <- raw_data[1:num_train_samples, ]
+mean_train <- apply(train_data, 2, mean)
+sd_train   <- apply(train_data, 2, sd)
+
+raw_data <- scale(raw_data, center = mean_train, scale = sd_train)
+```
+
+# Creating Time-Series Datasets
+
+```{r datasets}
+sampling_rate <- 6
+sequence_length <- 120
+batch_size <- 256
+delay <- sampling_rate * (sequence_length + 24 - 1)
+temperature_col <- 2
+
+train_dataset <- timeseries_dataset_from_array(
+  data = raw_data[1:(num_train_samples - delay), ],
+  targets = raw_data[(delay + 1):num_train_samples, temperature_col],
+  sampling_rate = sampling_rate,
+  sequence_length = sequence_length,
+  shuffle = TRUE,
+  batch_size = batch_size
+)
+
+val_dataset <- timeseries_dataset_from_array(
+  data = raw_data[(num_train_samples + 1):(num_train_samples + num_val_samples - delay), ],
+  targets = raw_data[(num_train_samples + delay + 1):(num_train_samples + num_val_samples), temperature_col],
+  sampling_rate = sampling_rate,
+  sequence_length = sequence_length,
+  shuffle = TRUE,
+  batch_size = batch_size
+)
+
+test_dataset <- timeseries_dataset_from_array(
+  data = raw_data[(num_train_samples + num_val_samples + 1):(nrow(raw_data) - delay), ],
+  targets = raw_data[(num_train_samples + num_val_samples + delay + 1):nrow(raw_data), temperature_col],
+  sampling_rate = sampling_rate,
+  sequence_length = sequence_length,
+  shuffle = FALSE,
+  batch_size = batch_size
+)
+```
+
+# Build Helper Objects
+
+```{r helpers}
+optimizer_fn <- tf$keras$optimizers$legacy$RMSprop
+
+get_callbacks <- function(filepath) {
+  list(callback_model_checkpoint(filepath = filepath, save_best_only = TRUE))
+}
+
+get_best_val_mae <- function(history_obj) {
+  min(as.numeric(history_obj$metrics$val_mae))
+}
+```
+
+# Model 1: Single GRU
+
+```{r model-1}
+inputs <- layer_input(shape = c(sequence_length, ncol(raw_data)))
+outputs <- inputs %>%
+  layer_gru(units = 32) %>%
+  layer_dense(units = 1)
+
+model_gru <- keras_model(inputs, outputs)
+
+model_gru %>% compile(
+  optimizer = optimizer_fn(),
+  loss = "mse",
+  metrics = list("mae")
+)
+
+history_gru <- model_gru %>% fit(
+  train_dataset,
+  epochs = 20,
+  validation_data = val_dataset,
+  callbacks = get_callbacks("model_gru.keras"),
+  verbose = 1
+)
+```
+
+# Model 2: Stacked GRU
+
+```{r model-2}
+inputs <- layer_input(shape = c(sequence_length, ncol(raw_data)))
+outputs <- inputs %>%
+  layer_gru(units = 32, return_sequences = TRUE) %>%
+  layer_gru(units = 32) %>%
+  layer_dense(units = 1)
+
+model_stacked_gru <- keras_model(inputs, outputs)
+
+model_stacked_gru %>% compile(
+  optimizer = optimizer_fn(),
+  loss = "mse",
+  metrics = list("mae")
+)
+
+history_stacked_gru <- model_stacked_gru %>% fit(
+  train_dataset,
+  epochs = 20,
+  validation_data = val_dataset,
+  callbacks = get_callbacks("model_stacked_gru.keras"),
+  verbose = 1
+)
+```
+
+# Model 3: LSTM
+
+```{r model-3}
+inputs <- layer_input(shape = c(sequence_length, ncol(raw_data)))
+outputs <- inputs %>%
+  layer_lstm(units = 32) %>%
+  layer_dense(units = 1)
+
+model_lstm <- keras_model(inputs, outputs)
+
+model_lstm %>% compile(
+  optimizer = optimizer_fn(),
+  loss = "mse",
+  metrics = list("mae")
+)
+
+history_lstm <- model_lstm %>% fit(
+  train_dataset,
+  epochs = 20,
+  validation_data = val_dataset,
+  callbacks = get_callbacks("model_lstm.keras"),
+  verbose = 1
+)
+```
+
+# Model 4: Conv1D + GRU
+
+```{r model-4}
+inputs <- layer_input(shape = c(sequence_length, ncol(raw_data)))
+outputs <- inputs %>%
+  layer_conv_1d(filters = 32, kernel_size = 5, activation = "relu") %>%
+  layer_max_pooling_1d(pool_size = 3) %>%
+  layer_gru(units = 32) %>%
+  layer_dense(units = 1)
+
+model_conv_gru <- keras_model(inputs, outputs)
+
+model_conv_gru %>% compile(
+  optimizer = optimizer_fn(),
+  loss = "mse",
+  metrics = list("mae")
+)
+
+history_conv_gru <- model_conv_gru %>% fit(
+  train_dataset,
+  epochs = 20,
+  validation_data = val_dataset,
+  callbacks = get_callbacks("model_conv_gru.keras"),
+  verbose = 1
+)
+```
+
+# Compare Validation Performance
+
+```{r compare-models}
+results <- tibble(
+  Model = c("Single GRU", "Stacked GRU", "LSTM", "Conv1D + GRU"),
+  Best_Validation_MAE = c(
+    get_best_val_mae(history_gru),
+    get_best_val_mae(history_stacked_gru),
+    get_best_val_mae(history_lstm),
+    get_best_val_mae(history_conv_gru)
+  )
+) %>%
+  arrange(Best_Validation_MAE)
+
+results %>%
+  kable(caption = "Comparison of Models by Best Validation MAE", digits = 4) %>%
+  kable_styling(full_width = FALSE)
+```
+
+# Plot Validation MAE
+
+```{r plot-val-mae, fig.width=8, fig.height=5}
+plot(as.numeric(history_gru$metrics$val_mae), type = "l",
+     xlab = "Epoch", ylab = "Validation MAE",
+     main = "Validation MAE Across Models")
+lines(as.numeric(history_stacked_gru$metrics$val_mae), lty = 2)
+lines(as.numeric(history_lstm$metrics$val_mae), lty = 3)
+lines(as.numeric(history_conv_gru$metrics$val_mae), lty = 4)
+legend("topright",
+       legend = c("Single GRU", "Stacked GRU", "LSTM", "Conv1D + GRU"),
+       lty = c(1, 2, 3, 4),
+       bty = "n")
+```
+
+# Evaluate Best Model on the Test Set
+
+```{r test-best-model}
+best_model_name <- results$Model[1]
+best_model_name
+
+if (best_model_name == "Single GRU") {
+  best_model <- load_model_tf("model_gru.keras")
+} else if (best_model_name == "Stacked GRU") {
+  best_model <- load_model_tf("model_stacked_gru.keras")
+} else if (best_model_name == "LSTM") {
+  best_model <- load_model_tf("model_lstm.keras")
+} else {
+  best_model <- load_model_tf("model_conv_gru.keras")
+}
+
+test_metrics <- best_model %>% evaluate(test_dataset, verbose = 0)
+test_metrics
+```
+
+# Final Results Table
+
+```{r final-table}
+final_results <- results %>%
+  mutate(Test_MAE = ifelse(Model == best_model_name, round(as.numeric(test_metrics[[2]]), 4), NA))
+
+final_results %>%
+  kable(caption = "Final Model Comparison", digits = 4) %>%
+  kable_styling(full_width = FALSE)
+```
+
+# Findings
+Based on the results, the best model was the one with the lowest validation MAE. This model was then tested on new, unseen test data to see how well it performed. Comparing all four models helped show whether making the models more complex improved performance. In some cases, the Conv1D + GRU model may perform better because the convolution layer can capture short-term patterns before the GRU handles the sequence. In other cases, the LSTM or stacked GRU may perform better because they are better at learning long-term patterns in the data.
+
+# Conclusion
+In this assignment, I used different RNN models to work on a weather time-series forecasting problem. I tested a basic GRU, stacked GRU, LSTM, and a Conv1D + GRU model. I compared the models using validation MAE and then tested the best one on the test dataset, as required. Overall, this project showed that the model structure affects performance, and trying different layers like GRU, LSTM, and Conv1D can help improve results.
